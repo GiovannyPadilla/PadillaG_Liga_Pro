@@ -4,6 +4,12 @@ namespace PadillaG_Liga_Pro.Repositories
 {
     public class EquipoRepository
     {
+        public IEnumerable<Equipo> Equipos;
+
+        public EquipoRepository()
+        {
+            Equipos = DevuelveListadoEquipos();
+        }
         public IEnumerable<Equipo> DevuelveListadoEquipos()
         {
             List<Equipo> equipos = new List<Equipo>();
@@ -31,6 +37,19 @@ namespace PadillaG_Liga_Pro.Repositories
 
             return(equipos);
 
+        }
+        public Equipo DevuelveEquipoPorID(int Id)
+        {
+            var equipos = DevuelveListadoEquipos();
+            var equipo = equipos.First(item => item.Id == Id);
+            return equipo;
+        }
+
+        public bool ActualizarEquipo(int Id, Equipo equipo)
+        {
+            //Actualizar el equipo en la base de datos
+
+            return true;
         }
     }
 }

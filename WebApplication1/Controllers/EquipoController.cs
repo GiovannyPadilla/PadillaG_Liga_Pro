@@ -7,8 +7,13 @@ using PadillaG_Liga_Pro.Repositories;
 namespace PadillaG_Liga_Pro.Controllers
 {
     public class EquipoController : Controller
-    {
 
+    {
+        public EquipoRepository _repository;
+        public EquipoController()
+        {
+            _repository = new EquipoRepository();
+        }
         public ActionResult View()
         {
             return View();
@@ -24,6 +29,35 @@ namespace PadillaG_Liga_Pro.Controllers
 
             return View(equipos);
         }
+        public ActionResult Create()
+        {
+            
+            return View();
+        }
+        
+        public ActionResult Edit(int Id)
+        {
+            var ldu = _repository.DevuelveEquipoPorID(Id);
+            return View(ldu);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(int Id, Equipo equipo)
+        {
+            try
+            {
+                //Proceso de guardado
+                
+                _repository.ActualizarEquipo(Id, equipo);
+                return RedirectToAction(nameof(List));
+            }
+            catch
+            {
+                return View();
+            }
+
+        }
+
 
     }
 }
