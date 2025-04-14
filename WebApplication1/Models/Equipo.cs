@@ -23,6 +23,6 @@ namespace PadillaG_Liga_Pro.Models
         [Range(0, 100)]
         public int partidosPerdidos { get; set; }
         
-
+        public int Puntos => (partidosGanados * 3) + (partidosEmpatados * 1);
     }
 }
