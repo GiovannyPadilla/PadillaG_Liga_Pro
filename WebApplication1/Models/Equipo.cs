@@ -9,7 +9,7 @@ namespace PadillaG_Liga_Pro.Models
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]
-        [DisplayName("Nombre el equipo")]
+        [DisplayName("Nombre Del equipo")]
 
         public string Nombre { get; set; }
         [Range(0, 100)]

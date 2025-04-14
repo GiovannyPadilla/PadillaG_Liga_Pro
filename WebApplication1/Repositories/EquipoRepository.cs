@@ -228,11 +228,11 @@ namespace PadillaG_Liga_Pro.Repositories
 {
     public class EquipoRepository
     {
-        private static List<Equipo> _equipos; // Lista estática para mantener los datos entre instancias
+        private static List<Equipo> _equipos; 
 
         public EquipoRepository()
         {
-            if (_equipos == null) // Solo inicializa la primera vez
+            if (_equipos == null) 
             {
                 _equipos = InicializarEquipos();
             }
@@ -457,6 +457,5 @@ namespace PadillaG_Liga_Pro.Repositories
 
             return true;
         }
-
     }
 }

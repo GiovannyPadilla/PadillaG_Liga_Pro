@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PadillaG_Liga_Pro.Models.Equipo>
+﻿@* @model IEnumerable<PadillaG_Liga_Pro.Models.Equipo>
 
 @{
     ViewData["Title"] = "Lista de Equipos";
@@ -61,10 +61,150 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-info"}) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }, new { @class = "btn btn-danger"})
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+
             </td>
         </tr>
 }
     </tbody>
 </table>
+ *@
+ @model IEnumerable<PadillaG_Liga_Pro.Models.Equipo>
+
+@{
+    ViewData["Title"] = "Lista de Equipos";
+}
+
+<style>
+    /* Estilos generales para la página */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #1d3c6e; /* Azul oscuro */
+        margin-top: 30px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .btn-add {
+        background-color: #28a745;
+        color: white;
+        font-weight: bold;
+    }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+    table {
+        width: 100%;
+        margin-top: 30px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: 10px;
+    }
+
+    td {
+        text-align: center;
+        padding: 12px;
+        font-size: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.8;
+    }
+
+    .action-links {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+    }
+</style>
+
+<h1 class="text-center text-primary font-weight-bold">Listado de Equipos</h1>
+
+<p class="text-right">
+    <a class="btn btn-add" asp-action="Create">Agregar Nuevo Equipo</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Id)</th>
+            <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+            <th>@Html.DisplayNameFor(model => model.partidosJugados)</th>
+            <th>@Html.DisplayNameFor(model => model.partidosGanados)</th>
+            <th>@Html.DisplayNameFor(model => model.partidosEmpatados)</th>
+            <th>@Html.DisplayNameFor(model => model.partidosPerdidos)</th>
+            <th>Puntos</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                <td>@Html.DisplayFor(modelItem => item.partidosJugados)</td>
+                <td>@Html.DisplayFor(modelItem => item.partidosGanados)</td>
+                <td>@Html.DisplayFor(modelItem => item.partidosEmpatados)</td>
+                <td>@Html.DisplayFor(modelItem => item.partidosPerdidos)</td>
+                <td>@item.Puntos</td>
+                <td class="action-links">
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

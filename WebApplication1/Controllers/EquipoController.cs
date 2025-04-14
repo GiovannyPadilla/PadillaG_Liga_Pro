@@ -146,8 +146,9 @@ namespace PadillaG_Liga_Pro.Controllers
             return View();
         }
 
+
         // Vista de detalle del equipo
-        public ActionResult Detail(int Id)
+        public ActionResult Details(int Id)
         {
             var equipo = _repository.DevuelveEquipoPorID(Id);
             if (equipo == null)
@@ -197,7 +198,7 @@ namespace PadillaG_Liga_Pro.Controllers
             catch
             {
                 ModelState.AddModelError("", "Error al guardar los datos");
-                return RedirectToAction(nameof(Detail), new { Id });
+                return RedirectToAction(nameof(Details), new { Id });
             }
         }
 
@@ -217,7 +218,7 @@ namespace PadillaG_Liga_Pro.Controllers
         {
             try
             {
-                _repository.EliminarEquipo(id); // Método que eliminara el equipo
+                _repository.EliminarEquipo(id); 
                 return RedirectToAction(nameof(List));
             }
             catch
